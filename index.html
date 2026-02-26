@@ -7,9 +7,57 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <title>The Meal — Personalized Vietnamese Nutrition</title>
+    <style>
+      .boot-fallback {
+        min-height: 100dvh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: #0a0a14;
+        color: #f0eff4;
+        font-family: Sora, system-ui, -apple-system, sans-serif;
+      }
+      .boot-fallback__card {
+        max-width: 760px;
+        width: 100%;
+        border-radius: 24px;
+        border: 1px solid rgba(240, 239, 244, 0.18);
+        background: rgba(24, 24, 27, 0.8);
+        padding: 24px;
+      }
+      .boot-fallback h1 {
+        margin: 0 0 12px;
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      }
+      .boot-fallback p {
+        margin: 8px 0;
+        line-height: 1.6;
+      }
+      .boot-fallback code {
+        font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
+        color: #7B61FF;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+
+    <script>
+      window.addEventListener('error', function () {
+        var root = document.getElementById('root')
+        if (!root || root.children.length) return
+        root.className = 'boot-fallback'
+        root.innerHTML = [
+          '<div class="boot-fallback__card">',
+          '<h1>Trang đang ở chế độ source nên app React chưa chạy.</h1>',
+          '<p>Bạn đang thấy file gốc (<code>index.html</code> + <code>/src/main.jsx</code>), chưa phải bản đã build của Vite.</p>',
+          '<p>Vui lòng kiểm tra GitHub Pages đang dùng <strong>GitHub Actions</strong> và workflow deploy đã chạy thành công.</p>',
+          '<p>Sau khi deploy đúng, trang sẽ load từ <code>dist/assets/*</code> và giao diện sẽ hiển thị bình thường.</p>',
+          '</div>',
+        ].join('')
+      })
+    </script>
+
+    <script type="module" src="./src/main.jsx"></script>
   </body>
 </html>
